@@ -11,7 +11,8 @@ const cors=require('cors');
 dotenv.config();
 
 app.use(cors({
-  origin:"http://localhost:5173/",
+  origin:"http://localhost:5173",
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials:true
 }));
 app.use(express.json());
@@ -53,7 +54,7 @@ app.post("/signup",async (req,res)=>{
   }
 })
 
-app.get("/login",async (req,res)=>{
+app.post("/login",async (req,res)=>{
     // res.send("Done")
     try{
       const {email,password}=req.body;
@@ -64,13 +65,12 @@ app.get("/login",async (req,res)=>{
       if(!isPasswordValid)
         throw new Error("EmailId or Password is Invalid");
       const key=process.env.PRIVATE_KEY;
-      const token=await jwt.sign({_id:user._id},key,{ algorithm: 'RS256' });
+      const token=await jwt.sign({_id:user._id},key);
       res.cookie("token",token,{maxAge:60*60*1000});
       res.status(200).json({
         message:"Logged In",
         data:req.body
       })
-
 
     }
     catch(err)
