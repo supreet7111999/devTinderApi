@@ -69,7 +69,15 @@ app.post("/login",async (req,res)=>{
       res.cookie("token",token,{maxAge:60*60*1000});
       res.status(200).json({
         message:"Logged In",
-        data:user
+        data:{
+          user:{
+          _id:user._id,
+          name:user.name,
+          email:user.email,
+          gender:user.gender,
+          photoUrl:user.photoUrl,
+          age:user.age
+        }}
       })
 
     }
