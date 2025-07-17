@@ -18,7 +18,8 @@ const userSchema=mongoose.Schema({
             if(!validator.isEmail(val)){
                 throw new Error("Invalid Email");
             }
-        }
+        },
+        unique:true
     },
     age:{
         type: Number,
