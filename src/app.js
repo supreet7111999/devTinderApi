@@ -8,6 +8,7 @@ const bcrypt=require("bcrypt");
 const cookieParser=require("cookie-parser");
 const jwt=require("jsonwebtoken");
 const cors=require('cors');
+const profileRouter=require("./routers/profileRouter");
 const authRouter=require('./routers/authRouter');
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use("/",authRouter);
-
+app.use("/",profileRouter);
 
 
 

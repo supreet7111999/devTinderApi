@@ -3,14 +3,16 @@ const User = require("../models/User");
 
 const authenticateUser=async (req,res,next)=>{
   try{
+    console.log("kjbjk");
      const {token}=req.cookies;
-     const decodedData=jwt.verify(token,process.env.PRIVATE_KEY);
+     const decodedData=await jwt.verify(token,process.env.PRIVATE_KEY);
      console.log("decodeddata",decodedData);
      const {_id}=decodedData;
-     const user=User.findOne(_id);
+     const user=await User.findOne({_id});
      if(!user)
         throw new Error("Invalid Credentials");
      req.user=user;
+     console.log("jhhj");
      next();
   }
   catch(err){

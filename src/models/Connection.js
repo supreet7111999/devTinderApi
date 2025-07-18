@@ -21,6 +21,15 @@ const connectionSchema=mongoose.Schema(
      { timestamps: true }
 )
 
+connectionSchema.index({from:1,to:1});
+
+connectionSchema.pre("save",function(){
+  const connReq=this;
+  if(connReq.from.equals(connReq.to))
+    throw new Error("User can't send req. to itself");
+  next();
+})
+
 
 const Connection=new mongoose.model("Connection",connectionSchema);
 

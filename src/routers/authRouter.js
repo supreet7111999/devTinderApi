@@ -4,9 +4,7 @@ const dotenv = require('dotenv')
 const {validateSignUpData}=require('../utils/validation');
 const User = require("../models/User");
 const bcrypt=require("bcrypt");
-const cookieParser=require("cookie-parser");
 const jwt=require("jsonwebtoken");
-const cors=require('cors');
 dotenv.config();
 
 authRouter.post("/signup",async (req,res)=>{
