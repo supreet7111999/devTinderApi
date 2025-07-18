@@ -5,9 +5,9 @@ const { validateEditProfileData } = require("../utils/validation");
 // const cookies=require('cookie-parser');
 
 
-profileRouter.get("/profile/view",authenticateUser,async (req,res)=>{
+profileRouter.post("/profile/view",authenticateUser,async (req,res)=>{
     try{
-        console.log("gggg");
+        // console.log("gggg");
       res.status(200).json({
         message:"User send",
         data:req.user
