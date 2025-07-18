@@ -10,6 +10,8 @@ const jwt=require("jsonwebtoken");
 const cors=require('cors');
 const profileRouter=require("./routers/profileRouter");
 const authRouter=require('./routers/authRouter');
+const requestRouter = require("./routers/requestRouter");
+const userRouter = require("./routers/userRouter");
 dotenv.config();
 
 app.use(cors({
@@ -21,6 +23,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/",authRouter);
 app.use("/",profileRouter);
+app.use("/",requestRouter); 
+app.use("/",userRouter);
 
 
 

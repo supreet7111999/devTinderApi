@@ -10,6 +10,15 @@ const validateSignUpData =(req)=>{
 //     throw new Error("Weak Password");
 }
 
+const validateEditProfileData=(req)=>{
+    const allowedField=["name","email","age","password","gender","photoUrl"];
+    const isValid=Object.keys(req.body).every((key)=>{
+        allowedField.includes(key)
+    });
+    return isValid;
+}
+
 module.exports ={
     validateSignUpData,
+    validateEditProfileData
 }

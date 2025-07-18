@@ -13,7 +13,7 @@ const connectionSchema=mongoose.Schema(
    status:{
     type:String,
     enum:{
-      values: ['electronics', 'clothing', 'books'],
+      values: ['ignored','accepted','rejected','interested'],
       message: '{VALUE} is not a valid category.'
      }
     }
@@ -23,7 +23,7 @@ const connectionSchema=mongoose.Schema(
 
 connectionSchema.index({from:1,to:1});
 
-connectionSchema.pre("save",function(){
+connectionSchema.pre("save",function(next){
   const connReq=this;
   if(connReq.from.equals(connReq.to))
     throw new Error("User can't send req. to itself");
