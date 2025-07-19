@@ -15,9 +15,9 @@ const userRouter = require("./routers/userRouter");
 dotenv.config();
 
 app.use(cors({
-  origin:"http://localhost:5173",
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials:true
+  origin: "http://localhost:5173",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 }));
 app.use(express.json());
 app.use(cookieParser());
