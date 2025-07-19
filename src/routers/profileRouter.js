@@ -27,8 +27,8 @@ profileRouter.patch("/profile/edit",authenticateUser,async(req,res)=>{
     if(!validateEditProfileData(req))
       throw new Error("Invalid Updation");
     const loggedInUser=req.user;
-    Object.keys(loggedInUser).every((key)=>{
-      loggedInUser.key=req.body[key];
+    Object.keys(req?.body).forEach((key)=>{
+      loggedInUser[key]=req.body[key];
     })
     const updatedUser=await loggedInUser.save();
     res.status(200).json({
