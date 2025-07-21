@@ -58,7 +58,7 @@ requestRouter.post("/request/review/:status/:fromUserId",authenticateUser,async 
        const {status,fromUserId}=req.params;
        const toUserId=req.user._id;
        const allowedStatus=["accepted","rejected"];
-       if(allowedStatus.includes(status))
+       if(!allowedStatus.includes(status))
          throw new Error("Invalid status");
        const existingConnection=await Connection.findOne({
         from:fromUserId,
