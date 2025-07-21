@@ -15,7 +15,7 @@ const userRouter = require("./routers/userRouter");
 dotenv.config();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "http://13.222.218.221:80",
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 }));
