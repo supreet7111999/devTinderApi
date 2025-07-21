@@ -40,7 +40,7 @@ userRouter.get("/user/connections",authenticateUser,async (req,res)=>{
             {form:loggedUserId,status:"accepted"},
             {to:loggedUserId,status:"accepted"}
         ]
-       });
+       }).populate("from", USER_SAFE_DATA);
        if(connectionAll.length==0)
           throw new Error("No connections");
        const data=connectionAll.map((row)=>{
